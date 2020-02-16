@@ -44,6 +44,7 @@ class sudoku:
     val -= 1
     return (not self.colused[x][val]) and (not self.rowused[y][val]) and (not self.blockused[y//3][x//3][val])
 
+
   def place(self, position, val):
     # fill in a spot
     # return True if the move was valid and completed
@@ -58,6 +59,7 @@ class sudoku:
       return True
     return False
 
+
   def unplace(self, position):
     # undo a move if there is a number there
     y, x = position
@@ -68,6 +70,7 @@ class sudoku:
       self.colused[x][val] = False
       self.rowused[y][val] = False
       self.blockused[y//3][x//3][val] = False
+
 
   def _solve(self, solns, exhaustive=False):
     # recursively try each possible available move.
@@ -83,10 +86,11 @@ class sudoku:
               self.unplace((y, x))
           return solns
     solns.append(sudoku(self.board.copy()))
-    
 
+    
   def solve(self, exhaustive=False):
     return self._solve([], exhaustive)
+
     
   def __str__(self):
     ret = ''
@@ -98,3 +102,4 @@ class sudoku:
         elif y != 8:
           ret += '\n'
     return ret
+
